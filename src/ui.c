@@ -5,6 +5,6 @@ int main()
   printf("> ");
   // echo input normally
   char input[100];
-  scanf("%99s", input);
+  fgets(input, 100, stdin);
   printf("%s\n", input);
 }

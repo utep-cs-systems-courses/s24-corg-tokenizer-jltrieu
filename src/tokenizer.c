@@ -1,4 +1,5 @@
-#include <stdlib.h>;
+#include <stdlib.h>
+#include "tokenizer.h"
 
 /* return true (non-zero) if c is a whitespace character
    ('\t' or ' ').
@@ -51,7 +52,8 @@ char *token_terminator(char *token)
 }
 
 /* Returns the number of tokens in the string arg. */
-int count_tokens(char *s){
+int count_tokens(char *s)
+{
   int count = 0;
   while(*(s = token_start(s))){
     count++;
@@ -73,4 +75,21 @@ char *copy_str(char *inStr, short len)
     *outStr = '\0';
   }
   return outStrStart;
+}
+
+/* returns a freshly allocated zero-terminated vector of
+   freshly allocated space-separated tokens from a zero-terminated string */
+
+char **tokenize(char *str)
+{
+  int count = count_tokens(str);
+  char **tokens = malloc(count + 1);
+  for(int i = 0; i < count; i++){
+    str = token_start(str);
+    int tlen = token_terminator(str) - str;
+    tokens[i] = copy_str(str, tlen);
+    str = token_terminator(str);
+  }
+  tokens[count] = '\0';
+  return tokens;
 }
