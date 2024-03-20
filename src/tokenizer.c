@@ -79,11 +79,10 @@ char *copy_str(char *inStr, short len)
 
 /* returns a freshly allocated zero-terminated vector of
    freshly allocated space-separated tokens from a zero-terminated string */
-
 char **tokenize(char *str)
 {
   int count = count_tokens(str);
-  char **tokens = malloc(count + 1);
+  char **tokens = malloc((count + 1) * 8);
   for(int i = 0; i < count; i++){
     str = token_start(str);
     int tlen = token_terminator(str) - str;
@@ -92,4 +91,26 @@ char **tokenize(char *str)
   }
   tokens[count] = '\0';
   return tokens;
+}
+
+/* prints all the tokens */
+void print_tokens(char **tokens)
+{
+  //print every token in order until we hit the zero-terminator
+  int i = 0;
+  while(token[i]){
+    printf("%s\n", token[i]);
+    i++;
+  }
+}
+
+/* free all tokens and the vector containing them */
+void free_tokens(char **tokens)
+{
+  int i = 0;
+  while(token[i]){
+    free(token[i]);
+  }
+  free(token[i]); //free the last token
+  free(token);
 }
