@@ -35,7 +35,9 @@ int main()
     case '2':
       print_history(history);
       printf("Enter the ID of an entry you wish to recall: ");
-      tokens = tokenize(get_history(history, 2));
+      while ((c = getchar()) == '\n');
+      c = c - 48; // to make it an actual number
+      tokens = tokenize(get_history(history, c));
       print_tokens(tokens);
       free_tokens(tokens);
       break;
