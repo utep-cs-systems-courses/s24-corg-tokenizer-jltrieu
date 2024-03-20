@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "tokenizer.h"
 
 /* return true (non-zero) if c is a whitespace character
@@ -98,8 +99,8 @@ void print_tokens(char **tokens)
 {
   //print every token in order until we hit the zero-terminator
   int i = 0;
-  while(token[i]){
-    printf("%s\n", token[i]);
+  while(tokens[i]){
+    printf("%s\n", tokens[i]);
     i++;
   }
 }
@@ -108,9 +109,9 @@ void print_tokens(char **tokens)
 void free_tokens(char **tokens)
 {
   int i = 0;
-  while(token[i]){
-    free(token[i]);
+  while(tokens[i]){
+    free(tokens[i]);
   }
-  free(token[i]); //free the last token
-  free(token);
+  free(tokens[i]); //free the last token
+  free(tokens);
 }
