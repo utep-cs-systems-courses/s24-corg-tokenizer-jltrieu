@@ -111,6 +111,7 @@ void free_tokens(char **tokens)
   int i = 0;
   while(tokens[i]){
     free(tokens[i]);
+    i++; //am i stupid or what
   }
   free(tokens[i]); //free the last token
   free(tokens);

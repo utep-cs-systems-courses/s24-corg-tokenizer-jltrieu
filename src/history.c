@@ -37,7 +37,12 @@ void add_history(List *list, char *str)
    int id - the id of the string to find */
 char *get_history(List *list, int id)
 {
-  Item *currentNode = list->root;
+  Item *currentNode;
+  if(list->root){
+    currentNode = list->root;
+  } else {
+    return "no root node!";
+  }
   while(currentNode){
     if(currentNode->id == id){
       return currentNode->str;
@@ -70,6 +75,8 @@ void free_item(Item *item)
 /* free the history list and the strings it references. */
 void free_history(List *list)
 {
-  free_item(list->root);
+  if(list->root){
+    free_item(list->root);
+  }
   free(list);
 }

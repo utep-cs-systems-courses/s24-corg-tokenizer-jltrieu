@@ -30,14 +30,14 @@ int main()
       tokens = tokenize(input);
       print_tokens(tokens);
       clear_string(input);
-      //free_tokens(tokens);
+      free_tokens(tokens);
       break;
     case '2':
       print_history(history);
       printf("Enter the ID of an entry you wish to recall: ");
-      tokens = tokenize(get_history(history, scanf("%d")));
+      tokens = tokenize(get_history(history, 2));
       print_tokens(tokens);
-      //free_tokens(tokens);
+      free_tokens(tokens);
       break;
     case '3':
       printf("Freeing resources...");
